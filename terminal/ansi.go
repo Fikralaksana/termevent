@@ -1,0 +1,43 @@
+package terminal
+
+// https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#general-ascii-codes
+const (
+	BEL = 7
+	BS  = 8
+	HT  = 9
+	LF  = 10
+	VT  = 11
+	FF  = 12
+	CR  = 13
+	ESC = 27
+	DEL = 127
+)
+
+// https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#cursor-controls
+const (
+	ESC_HOME                   = "\x1B[H"
+	ESC_CURSOR                 = "\x1B[%d;%dH"
+	ESC_END                    = "\x1B[%d;%df"
+	ESC_CURSOR_UP              = "\x1B[%dA"
+	ESC_CURSOR_DOWN            = "\x1B[%dB"
+	ESC_CURSOR_RIGHT           = "\x1B[%dC"
+	ESC_CURSOR_LEFT            = "\x1B[%dD"
+	ESC_CURSOR_NEXT            = "\x1B[%dE"
+	ESC_CURSOR_PREV            = "\x1B[%dF"
+	ESC_CURSOR_BEGIN           = "\x1B[%dG"
+	ESC_CURSOR_REPORT          = "\x1B[6n"
+	ESC_CURSOR_ONE_UP          = "\x1B[M"
+	ESC_SAVE_CURSOR_POS_DEC    = "\x1B[s"
+	ESC_RESTORE_CURSOR_POS_DEC = "\x1B[u"
+	ESC_SAVE_CURSOR_POS_SCO    = "\x1B[s"
+	ESC_RESTORE_CURSOR_POS_SCO = "\x1B[u"
+)
+
+// https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#erase-functions
+const (
+	ESC_ERASE_BEGIN_LINE  = "\x1B[1K"
+	ESC_ERASE_END_LINE    = "\x1B[0K"
+	ESC_ERASE_SCREEN      = "\x1B[2J"
+	ESC_ERASE_SCREEN_UP   = "\x1B[1J"
+	ESC_ERASE_SCREEN_DOWN = "\x1B[J"
+)
