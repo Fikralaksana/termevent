@@ -35,9 +35,35 @@ const (
 
 // https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#erase-functions
 const (
-	ESC_ERASE_BEGIN_LINE  = "\x1B[1K"
-	ESC_ERASE_END_LINE    = "\x1B[0K"
-	ESC_ERASE_SCREEN      = "\x1B[2J"
-	ESC_ERASE_SCREEN_UP   = "\x1B[1J"
-	ESC_ERASE_SCREEN_DOWN = "\x1B[J"
+	ESC_ERASE_SCREEN_DOWN                 = "\x1B[J"
+	ESC_ERASE_FROM_CURSOR_TO_SCREEN_END   = "\x1B[0J"
+	ESC_ERASE_FROM_CURSOR_TO_SCREEN_START = "\x1B[1J"
+	ESC_ERASE_SCREEN                      = "\x1B[2J"
+	ESC_ERASE_SAVED_LINES                 = "\x1B[3J"
+	ESC_ERASE_IN_LINE                     = "\x1B[K"
+	ESC_ERASE_FROM_CURSOR_TO_LINE_END     = "\x1B[0K"
+	ESC_ERASE_FROM_CURSOR_TO_LINE_START   = "\x1B[1K"
+	ESC_ERASE_LINE                        = "\x1B[2K"
+)
+
+// https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#insert-delete-functions
+const (
+	ESC_SET_GRAPHICS_MODE                 = `\x1B\[[0-9;]*m`
+	ESC_RESET_GRAPHICS_MODE               = "\x1B[0m"
+	ESC_SET_GRAPHICS_MODE_BOLD            = "\x1B[1m"
+	ESC_SET_GRAPHICS_MODE_DIM             = "\x1B[2m"
+	ESC_SET_GRAPHICS_MODE_ITALIC          = "\x1B[3m"
+	ESC_SET_GRAPHICS_MODE_UNDERLINE       = "\x1B[4m"
+	ESC_SET_GRAPHICS_MODE_BLINK           = "\x1B[5m"
+	ESC_SET_GRAPHICS_MODE_REVERSE         = "\x1B[7m"
+	ESC_SET_GRAPHICS_MODE_INVISIBLE       = "\x1B[8m"
+	ESC_SET_GRAPHICS_MODE_STRIKETHROUGH   = "\x1B[9m"
+	ESC_RESET_GRAPHICS_MODE_BOLD          = "\x1B[22m"
+	ESC_RESET_GRAPHICS_MODE_DIM           = "\x1B[22m"
+	ESC_RESET_GRAPHICS_MODE_ITALIC        = "\x1B[23m"
+	ESC_RESET_GRAPHICS_MODE_UNDERLINE     = "\x1B[24m"
+	ESC_RESET_GRAPHICS_MODE_BLINK         = "\x1B[25m"
+	ESC_RESET_GRAPHICS_MODE_REVERSE       = "\x1B[27m"
+	ESC_RESET_GRAPHICS_MODE_INVISIBLE     = "\x1B[28m"
+	ESC_RESET_GRAPHICS_MODE_STRIKETHROUGH = "\x1B[29m"
 )
