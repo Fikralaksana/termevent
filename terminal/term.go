@@ -16,7 +16,9 @@ import (
 
 const SHELL = "sh"
 
-type Terminal struct{}
+type Terminal struct {
+	inputBuffer []byte
+}
 
 func welcomeMessage() {
 	fmt.Println("Welcome to the termevent")
@@ -26,14 +28,15 @@ func createCommand() *exec.Cmd {
 	return exec.Command(SHELL)
 }
 
-func listenForInput(ptmx *os.File) {
-	rules_object := []rules.Rule{rules.Create([]byte("hello"))}
+func listenForInput(ptmx *os.File, t *Terminal) {
+	rules_object := rules.CollectRules()
 	tracker := rules.Tracker{Rules: rules_object}
 	for {
 		buffer := make([]byte, 1)
 		os.Stdin.Read(buffer)
 		ptmx.Write(buffer)
-		tracker.Track(buffer)
+		submittedInput := t.collectInput(buffer)
+		tracker.Track(submittedInput)
 	}
 
 }
@@ -69,6 +72,21 @@ func (t *Terminal) CreateTerminal() {
 	defer func() { _ = term.Restore(int(os.Stdin.Fd()), oldState) }() // Best effort.
 
 	// NOTE: The goroutine will keep reading until the next keystroke before returning.
-	go listenForInput(ptmx)
+	go listenForInput(ptmx, t)
 	_, _ = io.Copy(os.Stdout, ptmx)
+}
+
+func (t *Terminal) collectInput(input []byte) []byte {
+	submittedInput := []byte{}
+	if input[0] == ENTER {
+		submittedInput = t.inputBuffer
+		t.resetInputBuffer()
+	} else {
+		t.inputBuffer = append(t.inputBuffer, input...)
+	}
+	return submittedInput
+}
+
+func (t *Terminal) resetInputBuffer() {
+	t.inputBuffer = []byte{}
 }

@@ -2,10 +2,14 @@ package rules
 
 type Rule struct {
 	Condition      []byte
-	Accomplishment []byte
+	Accomplishment bool
+}
+
+func CollectRules() []Rule {
+	return []Rule{create([]byte("hello"))}
 }
 
 // Create creates a new rule
-func Create(condition []byte) Rule {
-	return Rule{Condition: condition, Accomplishment: []byte("")}
+func create(condition []byte) Rule {
+	return Rule{Condition: condition, Accomplishment: false}
 }
