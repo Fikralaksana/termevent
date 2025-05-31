@@ -17,7 +17,8 @@ import (
 const SHELL = "sh"
 
 type Terminal struct {
-	inputBuffer []byte
+	inputBuffer    []byte
+	cursorPosition int
 }
 
 func welcomeMessage() {
@@ -83,10 +84,23 @@ func (t *Terminal) collectInput(input []byte) []byte {
 		t.resetInputBuffer()
 	} else {
 		t.inputBuffer = append(t.inputBuffer, input...)
+		t.inputBuffer = t.filterCursorCommands(t.inputBuffer)
 	}
 	return submittedInput
 }
 
 func (t *Terminal) resetInputBuffer() {
 	t.inputBuffer = []byte{}
+}
+
+func (t *Terminal) filterCursorCommands(input []byte) []byte {
+	//  TODO: Filter cursor commands
+	//  if no cursor command, cursor position + 1
+	//  if cursor command left, cursor position - 1
+	//  if cursor command right, cursor position + 1
+	//  if cursor command up, last index of input
+	//  if cursor command down, last index of input
+	//  if cursor command home, first index of input
+	//  if cursor command end, last index of input
+	return input
 }
