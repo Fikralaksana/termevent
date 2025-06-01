@@ -30,7 +30,7 @@ func createCommand() *exec.Cmd {
 }
 
 func listenForInput(ptmx *os.File, t *Terminal) {
-	rules_object := rules.CollectRules()
+	rules_object := rules.Create()
 	tracker := rules.Tracker{Rules: rules_object}
 	for {
 		buffer := make([]byte, 1)

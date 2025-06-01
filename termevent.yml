@@ -1,0 +1,14 @@
+# Termevent Configuration
+# ======================
+version: "1.0"
+name: "termevent-config"
+
+# Input Rules - Text patterns only
+input_rules:
+  - name: "ls detector"
+    pattern: "ls"
+    category: "text_pattern"
+    type: "exact_match"
+    actions:
+      - name: "log"
+        message: "ls command triggered"
